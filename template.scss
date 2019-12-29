@@ -1,0 +1,119 @@
+body {
+  box-sizing: border-box;
+}
+
+
+.content {
+  background-color: white;
+  height: 100%;
+  padding: 20px;
+}
+
+.content .header {
+  height: 220px;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+}
+
+.content .header .title_container {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.content .header .title_container .item {
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+.content .header .qrcode {
+  width: 120px;
+  height: 120px;
+  padding: 15px;
+  background-color: black;
+  margin-right: 15px;
+}
+
+body div span {
+  font-weight: bold;
+  font-size: 25px;
+}
+
+.content .requisites {
+  display: flex;
+  flex-flow: row;
+}
+
+.content .requisites .item {
+  flex-grow: 1;
+  display: flex;
+  flex-flow: column;
+  padding-left: 15px;
+  padding-right: 8px;
+}
+
+.content .requisites .item .container {
+  display: flex;
+  flex-flow: row;
+  margin-top: 4px;
+  position: relative;
+  font-size: 14px;
+}
+
+.content .requisites .item .left {
+  width: 30%;
+  text-align: right;
+  padding-right: 10px;
+  font-weight: bold;
+}
+
+.content .requisites .item .right {
+  width: 70%;
+  flex-grow: 1;
+  flex-wrap: nowrap;
+}
+
+.content .table {
+  margin-top: 20px;
+
+}
+
+table {
+  font-size: 12px;
+  font-weight: bold;
+  width: 100%;
+  border-spacing: 0;
+
+}
+
+table thead {
+  background-color: #eee;
+}
+table thead th {
+  text-align: center;
+  border: 1px solid black;
+}
+
+table tbody td {
+  border: 0.5px solid black;
+  text-align: center;
+}
+
+.content .footer {
+  margin-top: 25px;
+  display: flex;
+  flex-flow: row;
+  padding-right: 15px;
+}
+
+.content .footer .item {
+  flex-grow: 1;
+  display: flex;
+  flex-flow: column;
+}

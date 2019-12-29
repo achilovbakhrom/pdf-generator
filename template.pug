@@ -1,0 +1,113 @@
+html
+    head
+        title
+        style
+            include template.scss
+        script
+            document.getElementById('facturaDate').innerHtml = '123'
+    body
+        div(class='content')
+            div(class='header')
+                div(class='title_container')
+                    div(class='item') Счет-Фактура
+                    div(class='item') №#{facturaNo}
+                    div(id='facturaDate' class='item') от #{facturaDate}
+                    div(class='item') к договорам №#{contractNo}
+                    div(class='item') от #{contractDate}
+                div(class='qrcode')
+
+            div(class='requisites')
+                div(class='item')
+                    div(class='container')
+                        div(class='left') Поставщик:
+                        div(class='right') #{seller.Name}
+                    div(class='container')
+                        div(class='left') Адрес:
+                        div(class='right') #{seller.Address}
+                    div(class='container')
+                        div(class='left') Телефон:
+                        div(class='right') #{seller.Phone || ''}
+                    div(class='container')
+                        div(class='left') Расчетный счет:
+                        div(class='right') #{seller.Account}
+                    div(class='container')
+                        div(class='left') Банк:
+                        div(class='right') Тошкент ш., "Ипотека-банк" АТИВ Шайхонтохур район
+                    div(class='container')
+                        div(class='left') МФО:
+                        div(class='right') #{seller.BankId}
+                    div(class='container')
+                        div(class='left') ОКЭД:
+                        div(class='right') #{seller.Oked}
+                div(class='item')
+                    div(class='container')
+                        div(class='left') Получатель:
+                        div(class='right') #{buyer.Name}
+                    div(class='container')
+                        div(class='left') Адрес:
+                        div(class='right') #{buyer.Address}
+                    div(class='container')
+                        div(class='left') Телефон:
+                        div(class='right') #{buyer.Phone}
+                    div(class='container')
+                        div(class='left') Расчетный счет:
+                        div(class='right') #{buyer.Account}
+                    div(class='container')
+                        div(class='left') Банк:
+                        div(class='right') Тошкент ш., "Ипотека-банк" АТИВ Шайхонтохур район
+                    div(class='container')
+                        div(class='left') МФО:
+                        div(class='right') #{buyer.BankId}
+                    div(class='container')
+                        div(class='left') ОКЭД:
+                        div(class='right') #{buyer.Oked}
+            div(class='table')
+                table
+                    thead
+                        tr
+                            th(rowspan=2) Наименование продукта
+                            th(rowspan=2) Единица измерения
+                            th(rowspan=2) Количество
+                            th(rowspan=2) Цена
+                            th(rowspan=2) Доставка
+                            th(colspan=2) НДС
+                            th(rowspan=2) Общая цена с учетом ндс
+                        tr
+                            th Ставка
+                            th Сумма
+                    tbody
+                        tr
+                            td 1
+                            td 2
+                            td 3
+                            td 4
+                            td 5
+                            td 6
+                            td 7
+                            td 8
+                        each value in productList
+                            tr
+                                td= value.Name
+                                td= value.MeasureId
+                                td= value.Count
+                                td= value.Summa
+                                td= value.DeliverySum
+                                td= value.VatSum
+                                td= value.DeliverySumWithVat
+                                td 2000
+                        tr
+                            td(colspan=5 style='text-align: right;') Итого
+                            td 100000
+                            td 100000
+                            td 100000
+                        tr
+                            td(colspan=8 style='text-align: right;') Итого: 1000000000
+            div(class='footer')
+                div(class='item')
+                    div(style='margin-top: 8px') Руководитель: Эргашев
+                    div(style='margin-top: 8px') Главный бухгалтер: Эргашев
+                div(class='item')
+                    div(style='margin-top: 8px; display: flex; justify-content: flex-end;') Руководитель: Эргашев
+                    div(style='margin-top: 8px; display: flex; justify-content: flex-end;') Главный бухгалтер: Эргашев
+
+
