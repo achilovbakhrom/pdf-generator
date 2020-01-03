@@ -1,10 +1,9 @@
 html
     head
-        title
+        title INVOICE PDF
         style
             include template.scss
-        script
-            document.getElementById('facturaDate').innerHtml = '123'
+        
     body
         div(class='content')
             div(class='header')
@@ -14,7 +13,7 @@ html
                     div(id='facturaDate' class='item') от #{facturaDate}
                     div(class='item') к договорам №#{contractNo}
                     div(class='item') от #{contractDate}
-                div(class='qrcode')
+                img(src=qrcode class="qrcode")
 
             div(class='requisites')
                 div(class='item')
@@ -92,22 +91,22 @@ html
                                 td= value.Count
                                 td= value.Summa
                                 td= value.DeliverySum
-                                td= value.VatSum
+                                td= value.VatSum || 'Без НДС'
                                 td= value.DeliverySumWithVat
-                                td 2000
+                                td= value.DeliverySumWithVat
                         tr
                             td(colspan=5 style='text-align: right;') Итого
-                            td 100000
-                            td 100000
-                            td 100000
+                            td #{vatSum}
+                            td #{totalVatSum}
+                            td #{totalVatSum.toLocaleString()}
                         tr
-                            td(colspan=8 style='text-align: right;') Итого: 1000000000
+                            td(colspan=8 style='text-align: right;') Итого: #{numberInWords}
             div(class='footer')
                 div(class='item')
-                    div(style='margin-top: 8px') Руководитель: Эргашев
-                    div(style='margin-top: 8px') Главный бухгалтер: Эргашев
+                    div(style='margin-top: 8px') Руководитель: #{seller.Director || '-'}
+                    div(style='margin-top: 8px') Главный бухгалтер: #{seller.Director || '-'}
                 div(class='item')
-                    div(style='margin-top: 8px; display: flex; justify-content: flex-end;') Руководитель: Эргашев
-                    div(style='margin-top: 8px; display: flex; justify-content: flex-end;') Главный бухгалтер: Эргашев
+                    div(style='margin-top: 8px; display: flex; justify-content: flex-end;') Руководитель: #{buyer.Director || '-'}
+                    div(style='margin-top: 8px; display: flex; justify-content: flex-end;') Главный бухгалтер: #{buyer.Director || '-'}
 
 
