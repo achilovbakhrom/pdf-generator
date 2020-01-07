@@ -6,13 +6,12 @@ var fs = require('fs');
 var moment = require('moment');
 var utils = require('./utils');
 var qrcode = require('qrcode');
+
+
 /* GET home page. */
 router.post('/einvoice', async function(req, res, next) {
     let invoice = req.body;
-    console.log(invoice.status)
-    console.log(invoice.facturaDTO)
     let dto = invoice.facturaDTO
-    console.log(dto.ProductList.Products)
     const q = await qrcode.toDataURL(JSON.stringify({FileType: 1, Tin: dto.SellerTin, Id: dto.FacturaId}));
 
     const options = {
@@ -41,19 +40,16 @@ router.post('/einvoice', async function(req, res, next) {
             qrcode: q
         },
 
-        // Here you put an object according to https://github.com/GoogleChrome/puppeteer/blob/v1.18.1/docs/api.md#pagepdfoptions
         pdfOptions: {
             // Ignore `path` to get the PDF as buffer only
-            path: 'pdf-file.pdf',
+            // path: 'pdf-file.pdf',
             format: 'A4',
             printBackground: true
-        }
+        },
+        puppeteerOptions: {args: ['--no-sandbox', '--disable-setuid-sandbox']}        
     };
     const pdfBuffer = await pdf.generatePdf(options);
-    res.send(pdfBuffer.toString('base64'))
-    // console.log(pdfBuffer)
-    // fs.writeFile('test.pdf', pdfBuffer, () => {})
-
+    res.send(pdfBuffer.toString('base64'))    
 });
 
 module.exports = router;
