@@ -14,6 +14,7 @@ body {
   display: flex;
   flex-flow: row;
   align-items: center;
+  position: relative;
 }
 
 .content .header .title_container {
@@ -28,8 +29,18 @@ body {
   display: flex;
   justify-content: center;
   font-weight: bold;
-  font-size: 14px;
+  font-size: 13px;
   margin-top: 4px;
+  letter-spacing: 1px;
+}
+
+.normal-text {
+  font-size: 13px;
+  font-weight: 100!important;
+}
+
+.mr-8 {
+  margin-right: 8px;
 }
 
 .content .header .qrcode {
@@ -38,6 +49,9 @@ body {
   padding: 15px;
   margin-right: 15px;
   border: 1px solid #666;
+  position: absolute;
+  right: 0;
+  top: 30px;
 }
 
 body div span {
@@ -71,12 +85,17 @@ body div span {
   text-align: right;
   padding-right: 10px;
   font-weight: bold;
+  font-size: 13px;
+  letter-spacing: 1px;
 }
 
 .content .requisites .item .right {
   width: 70%;
   flex-grow: 1;
   flex-wrap: nowrap;
+  font-size: 13px;
+  font-weight: 100;
+  letter-spacing: 1.5px;
 }
 
 .content .table {
@@ -85,7 +104,7 @@ body div span {
 }
 
 table {
-  font-size: 12px;
+  font-size: 10px;
   font-weight: bold;
   width: 100%;
   border-spacing: 0;
@@ -101,8 +120,10 @@ table thead th {
 }
 
 table tbody td {
-  border: 0.5px solid black;
+  border: 0.2px solid black;
   text-align: center;
+  font-weight: 100;
+  height: 18px;
 }
 
 .content .footer {
@@ -116,4 +137,6 @@ table tbody td {
   flex-grow: 1;
   display: flex;
   flex-flow: column;
+  font-size: 12px;
+  letter-spacing: 1px;
 }

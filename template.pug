@@ -3,16 +3,16 @@ html
         title INVOICE PDF
         style
             include template.scss
-        
+
     body
         div(class='content')
             div(class='header')
                 div(class='title_container')
                     div(class='item') Счет-Фактура
-                    div(class='item') №#{facturaNo}
-                    div(id='facturaDate' class='item') от #{facturaDate}
-                    div(class='item') к договорам №#{contractNo}
-                    div(class='item') от #{contractDate}
+                    div(class='item') <span class='normal-text mr-8'>№</span> #{facturaNo}
+                    div(id='facturaDate' class='item') <span class='normal-text mr-8'>от</span> #{facturaDate}
+                    div(class='item') <span class='normal-text mr-8'>к договорам</span> №#{contractNo}
+                    div(class='item') <span class='normal-text mr-8'>от</span> #{contractDate}
                 img(src=qrcode class="qrcode")
 
             div(class='requisites')
@@ -87,26 +87,26 @@ html
                         each value in productList
                             tr
                                 td= value.Name
-                                td= value.MeasureId
-                                td= value.Count
-                                td= value.Summa
-                                td= value.DeliverySum
-                                td= value.VatSum || 'Без НДС'
-                                td= value.DeliverySumWithVat
-                                td= value.DeliverySumWithVat
+                                td= value.MeasureName
+                                td= value.Count.toLocaleString()
+                                td= value.Summa.toLocaleString()
+                                td= value.DeliverySum.toLocaleString()
+                                td= value.VatSum.toLocaleString() || 'Без НДС'
+                                td= value.DeliverySumWithVat.toLocaleString()
+                                td= value.DeliverySumWithVat.toLocaleString()
                         tr
-                            td(colspan=5 style='text-align: right;') Итого
+                            td(colspan=5 style='text-align: right;') <span style='margin-right: 10px; font-size: 11px;'>Итого</span>
                             td #{vatSum}
                             td #{totalVatSum}
                             td #{totalVatSum.toLocaleString()}
                         tr
-                            td(colspan=8 style='text-align: right;') Итого: #{numberInWords}
+                            td(colspan=8 style='text-align: right;') <span style='font-weight: bold; font-size: 11px;'>Всего к оплате:</span> #{numberInWords}
             div(class='footer')
                 div(class='item')
-                    div(style='margin-top: 8px') Руководитель: #{seller.Director || '-'}
-                    div(style='margin-top: 8px') Главный бухгалтер: #{seller.Director || '-'}
+                    div(style='margin-top: 8px') <span style='font-weight: bold; font-size: 12px;'>Руководитель:</span> #{seller.Director || '-'}
+                    div(style='margin-top: 8px') <span style='font-weight: bold; font-size: 12px;'>Главный бухгалтер:</span> #{seller.Director || '-'}
                 div(class='item')
-                    div(style='margin-top: 8px; display: flex; justify-content: flex-end;') Руководитель: #{buyer.Director || '-'}
-                    div(style='margin-top: 8px; display: flex; justify-content: flex-end;') Главный бухгалтер: #{buyer.Director || '-'}
+                    div(style='margin-top: 8px; display: flex; justify-content: flex-end;') <span style='font-weight: bold; font-size: 12px;'>Руководитель:</span> #{buyer.Director || '-'}
+                    div(style='margin-top: 8px; display: flex; justify-content: flex-end;') <span style='font-weight: bold; font-size: 12px;'>Главный бухгалтер:</span> #{buyer.Director || '-'}
 
 

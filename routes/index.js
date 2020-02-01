@@ -11,7 +11,8 @@ var qrcode = require('qrcode');
 /* GET home page. */
 router.post('/einvoice', async function(req, res, next) {
     let invoice = req.body;
-    let dto = invoice.facturaDTO
+    console.log(invoice)
+    let dto = invoice.facturaDTO;
     const q = await qrcode.toDataURL(JSON.stringify({FileType: 1, Tin: dto.SellerTin, Id: dto.FacturaId}));
 
     const options = {
@@ -34,9 +35,9 @@ router.post('/einvoice', async function(req, res, next) {
             buyer: dto.Buyer,
             productList: dto.ProductList.Products,
             invoice: invoice.facturaDTO,
-            vatSum: dto.ProductList.Products ? dto.ProductList.Products.reduce((acc, v) => parseFloat(acc) + parseFloat(v.VatSum), 0) : 0,
-            totalVatSum: dto.ProductList.Products ? dto.ProductList.Products.reduce((acc, v) => parseFloat(acc) + parseFloat(v.DeliverySumWithVat), 0) : 0,
-            numberInWords: `${utils.numberInWords(dto.ProductList.Products ? dto.ProductList.Products.reduce((acc, v) => parseFloat(acc) + parseFloat(v.DeliverySumWithVat), 0) : 0)} сум`,
+            vatSum: dto.ProductList.Products ? dto.ProductList.Products.reduce((acc, v) => parseFloat(acc) + parseFloat(v.VatSum), 0).toLocaleString() : 0,
+            totalVatSum: dto.ProductList.Products ? dto.ProductList.Products.reduce((acc, v) => parseFloat(acc) + parseFloat(v.DeliverySumWithVat), 0).toLocaleString() : 0,
+            numberInWords: `${utils.numberInWords(dto.ProductList.Products ? dto.ProductList.Products.reduce((acc, v) => parseFloat(acc) + parseFloat(v.DeliverySumWithVat), 0).toLocaleString() : 0)} сум`,
             qrcode: q
         },
 
@@ -46,10 +47,10 @@ router.post('/einvoice', async function(req, res, next) {
             format: 'A4',
             printBackground: true
         },
-        puppeteerOptions: {args: ['--no-sandbox', '--disable-setuid-sandbox']}        
+        puppeteerOptions: {args: ['--no-sandbox', '--disable-setuid-sandbox']}
     };
     const pdfBuffer = await pdf.generatePdf(options);
-    res.send(pdfBuffer.toString('base64'))    
+    res.send(pdfBuffer.toString('base64'))
 });
 
 module.exports = router;
