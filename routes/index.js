@@ -45,7 +45,7 @@ router.post('/einvoice', async function(req, res, next) {
             // Ignore `path` to get the PDF as buffer only
             // path: 'pdf-file.pdf',
             format: 'A4',
-            printBackground: true
+            printBackground: false
         },
         puppeteerOptions: {args: ['--no-sandbox', '--disable-setuid-sandbox']}
     };

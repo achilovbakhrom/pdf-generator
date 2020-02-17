@@ -91,8 +91,8 @@ html
                                 td= value.Count.toLocaleString()
                                 td= value.Summa.toLocaleString()
                                 td= value.DeliverySum.toLocaleString()
-                                td= value.VatSum.toLocaleString() || 'Без НДС'
-                                td= value.DeliverySumWithVat.toLocaleString()
+                                td= value.VatRate.toLocaleString() || 'Без НДС'
+                                td= value.VatSum.toLocaleString()
                                 td= value.DeliverySumWithVat.toLocaleString()
                         tr
                             td(colspan=5 style='text-align: right;') <span style='margin-right: 10px; font-size: 11px;'>Итого</span>
@@ -100,7 +100,7 @@ html
                             td #{totalVatSum}
                             td #{totalVatSum.toLocaleString()}
                         tr
-                            td(colspan=8 style='text-align: right;') <span style='font-weight: bold; font-size: 11px;'>Всего к оплате:</span> #{numberInWords}
+                            td(colspan=8 style='text-align: right;') <span style='font-weight: bold; font-size: 11px;'>Всего к оплате:</span> <span style='margin-right: 20px; font-size: 11px;'>#{numberInWords} </span>
             div(class='footer')
                 div(class='item')
                     div(style='margin-top: 8px') <span style='font-weight: bold; font-size: 12px;'>Руководитель:</span> #{seller.Director || '-'}
