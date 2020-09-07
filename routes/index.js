@@ -11,7 +11,6 @@ var qrcode = require('qrcode');
 /* GET home page. */
 router.post('/einvoice', async function(req, res, next) {
     let invoice = req.body;
-    console.log(invoice)
     let dto = invoice.facturaDTO;
     const q = await qrcode.toDataURL(JSON.stringify({FileType: 1, Tin: dto.SellerTin, Id: dto.FacturaId}));
 
@@ -35,8 +34,8 @@ router.post('/einvoice', async function(req, res, next) {
             buyer: dto.Buyer,
             productList: dto.ProductList.Products,
             invoice: invoice.facturaDTO,
-            vatSum: dto.ProductList.Products ? dto.ProductList.Products.reduce((acc, v) => parseFloat(acc) + parseFloat(v.VatSum), 0).toLocaleString() : 0,
-            totalVatSum: dto.ProductList.Products ? dto.ProductList.Products.reduce((acc, v) => parseFloat(acc) + parseFloat(v.DeliverySumWithVat), 0).toLocaleString() : 0,
+            vatSum: dto.ProductList.Products ? Number(dto.ProductList.Products.reduce((acc, v) => parseFloat(acc) + parseFloat(v.VatSum), 0)).toFixed(2) : 0,
+            totalVatSum: dto.ProductList.Products ? Number(dto.ProductList.Products.reduce((acc, v) => parseFloat(acc) + parseFloat(v.DeliverySumWithVat), 0)).toFixed(2) : 0,
             numberInWords: `${utils.numberInWords(dto.ProductList.Products ? dto.ProductList.Products.reduce((acc, v) => parseFloat(acc) + parseFloat(v.DeliverySumWithVat), 0).toLocaleString() : 0)} сум`,
             qrcode: q
         },
